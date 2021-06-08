@@ -1,6 +1,6 @@
 // load components
 const countryComponent = require('../components/country/country.component');
-const userComponent = require('../components/user/user.component');
+const socialComponent = require('../components/social/social.component');
 const tweetComponent = require('../components/tweet/tweet.component');
 
 function loadRoutes(router) {
@@ -10,7 +10,7 @@ function loadRoutes(router) {
   );
   router.use(
     '/users',
-    userComponent.UserRoutes,
+    socialComponent.SocialRoutes,
   );
   router.use(
     '/tweets',

@@ -1,7 +1,7 @@
 const getUsers = ({
-  UserService,
+  SocialService,
 }) => async (httpRequest) => {
-  const response = await UserService.doGetUsers();
+  const response = await SocialService.doGetUsers();
   return {
     statusCode: 200,
     body: {
@@ -13,9 +13,9 @@ const getUsers = ({
 };
 
 const postUser = ({
-  UserService,
+  SocialService,
 }) => async (httpRequest) => {
-  const response = await UserService.doPostUser(httpRequest.body);
+  const response = await SocialService.doPostUser(httpRequest.body);
   return {
     statusCode: 200,
     body: {
