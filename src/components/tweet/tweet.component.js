@@ -14,14 +14,13 @@ const TweetValidator = require('./tweet.validator');
 
 // services
 const TweetService = require('./tweet.service');
+const SocialService = require('../social/social.service');
 
 // inject dependencies in controller methods
-const getTweets = controller.getTweets({ TweetService });
-const postTweet = controller.postTweet({ TweetService });
+const createTweet = controller.createTweet({ TweetService, SocialService });
 
 const TweetController = {
-  getTweets,
-  postTweet,
+  createTweet,
 };
 
 // routes

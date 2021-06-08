@@ -1,16 +1,14 @@
-const Tweet = require('./tweet.model');
+const Tweet = require('./model/tweet');
 
-const doGetTweets = async () => {
-  const res = await Tweet.find()
-  return res;
+const createTweet = async (SocialService, tweet) => {
+  const user = await SocialService.getUser(tweet.username)
+  if (!user.length) {
+    const createdUser = await SocialService.createUser({ username: tweet.username })
+    console.log("User successfully created!", createdUser);
+  }
+  return await new Tweet(tweet).save();
 };
 
-const doPostTweet = async (tweet) => {
-  let newTweet = new Tweet(tweet);
-  const res = await newTweet.save();
-  return res;
-};
 module.exports = {
-  doGetTweets,
-  doPostTweet,
+  createTweet,
 };

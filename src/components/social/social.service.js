@@ -5,6 +5,10 @@ const getUsers = async () => {
   return await User.find();
 };
 
+const getUser = async (username) => {
+  return await User.find({ username: username });
+};
+
 const createUser = async (user) => {
   return await new User(user).save();
 };
@@ -15,6 +19,7 @@ const follow = async (follower) => {
 
 module.exports = {
   getUsers,
+  getUser,
   createUser,
   follow
 };

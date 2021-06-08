@@ -6,9 +6,9 @@ module.exports = ({
   handleValidator,
 }) => {
   router.post(
-    '/tweet',
+    '/',
     handleValidator(TweetValidator.validateTweet),
-    handleRequest(TweetController.postTweet),
+    handleRequest(TweetController.createTweet),
   );
 
   return router;

@@ -13,7 +13,7 @@ function loadRoutes(router) {
     socialComponent.SocialRoutes,
   );
   router.use(
-    '/tweets',
+    '/tweet',
     tweetComponent.TweetRoutes,
   );
   return router;

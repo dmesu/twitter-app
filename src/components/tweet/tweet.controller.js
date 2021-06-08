@@ -1,21 +1,8 @@
-const getTweets = ({
-  TweetService,
-}) => async (httpRequest) => {
-  const response = await TweetService.doGetTweets();
-  return {
-    statusCode: 200,
-    body: {
-      success: true,
-      message: 'Fetched users successfully!',
-      data: response,
-    },
-  };
-};
 
-const postTweet = ({
-  TweetService,
+const createTweet = ({
+  TweetService, SocialService
 }) => async (httpRequest) => {
-  const response = await TweetService.doPostTweet(httpRequest.body);
+  const response = await TweetService.createTweet(SocialService, httpRequest.body);
   return {
     statusCode: 200,
     body: {
@@ -27,6 +14,5 @@ const postTweet = ({
 };
 
 module.exports = {
-  getTweets,
-  postTweet,
+  createTweet,
 };
