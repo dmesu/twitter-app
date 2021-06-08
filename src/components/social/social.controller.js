@@ -1,7 +1,7 @@
 const getUsers = ({
   SocialService,
-}) => async (httpRequest) => {
-  const response = await SocialService.doGetUsers();
+}) => async () => {
+  const response = await SocialService.getUsers();
   return {
     statusCode: 200,
     body: {
@@ -12,10 +12,10 @@ const getUsers = ({
   };
 };
 
-const postUser = ({
+const createUser = ({
   SocialService,
 }) => async (httpRequest) => {
-  const response = await SocialService.doPostUser(httpRequest.body);
+  const response = await SocialService.createUser(httpRequest.body);
   return {
     statusCode: 200,
     body: {
@@ -26,7 +26,22 @@ const postUser = ({
   };
 };
 
+const follow = ({
+  SocialService,
+}) => async (httpRequest) => {
+  const response = await SocialService.follow(httpRequest.body);
+  return {
+    statusCode: 200,
+    body: {
+      success: true,
+      message: `Created new follow`,
+      data: response,
+    },
+  };
+};
+
 module.exports = {
   getUsers,
-  postUser,
+  createUser,
+  follow
 };

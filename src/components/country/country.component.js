@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 // middlewares
 const {
-  makeExpressCallback,
-  makeValidatorCallback,
+  handleRequest,
+  handleValidator,
 } = require('../../middlewares');
 
 // controller
@@ -29,8 +29,8 @@ const routes = require('./country.routes')({
   router,
   CountryValidator,
   CountryController,
-  makeExpressCallback,
-  makeValidatorCallback,
+  handleRequest,
+  handleValidator,
 });
 
 module.exports = {

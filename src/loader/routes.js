@@ -9,7 +9,7 @@ function loadRoutes(router) {
     countryComponent.CountryRoutes,
   );
   router.use(
-    '/users',
+    '/social',
     socialComponent.SocialRoutes,
   );
   router.use(

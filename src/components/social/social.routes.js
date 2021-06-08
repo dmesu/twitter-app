@@ -2,18 +2,21 @@ module.exports = ({
   router,
   SocialController,
   SocialValidator,
-  makeExpressCallback,
-  makeValidatorCallback,
+  handleRequest,
+  handleValidator,
 }) => {
   router.get(
-    '/',
-    makeExpressCallback(SocialController.getUsers),
+    '/users',
+    handleRequest(SocialController.getUsers),
   );
-
   router.post(
-    '/',
-    makeValidatorCallback(SocialValidator.validateUser),
-    makeExpressCallback(SocialController.postUser),
+    '/user',
+    handleValidator(SocialValidator.validateUser),
+    handleRequest(SocialController.createUser),
+  );
+  router.post(
+    '/follow',
+    handleRequest(SocialController.follow),
   );
   return router;
 };

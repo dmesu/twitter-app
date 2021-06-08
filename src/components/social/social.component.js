@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 // middlewares
 const {
-  makeExpressCallback,
-  makeValidatorCallback,
+  handleRequest,
+  handleValidator,
 } = require('../../middlewares');
 
 // controller
@@ -17,11 +17,13 @@ const SocialService = require('./social.service');
 
 // inject dependencies in controller methods
 const getUsers = controller.getUsers({ SocialService });
-const postUser = controller.postUser({ SocialService });
+const createUser = controller.createUser({ SocialService });
+const follow = controller.follow({ SocialService });
 
 const SocialController = {
   getUsers,
-  postUser,
+  createUser,
+  follow
 };
 
 // routes
@@ -29,8 +31,8 @@ const routes = require('./social.routes')({
   router,
   SocialValidator,
   SocialController,
-  makeExpressCallback,
-  makeValidatorCallback,
+  handleRequest,
+  handleValidator,
 });
 
 module.exports = {

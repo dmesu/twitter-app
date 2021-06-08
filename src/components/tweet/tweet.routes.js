@@ -2,13 +2,13 @@ module.exports = ({
   router,
   TweetController,
   TweetValidator,
-  makeExpressCallback,
-  makeValidatorCallback,
+  handleRequest,
+  handleValidator,
 }) => {
   router.post(
     '/tweet',
-    makeValidatorCallback(TweetValidator.validateTweet),
-    makeExpressCallback(TweetController.postTweet),
+    handleValidator(TweetValidator.validateTweet),
+    handleRequest(TweetController.postTweet),
   );
 
   return router;

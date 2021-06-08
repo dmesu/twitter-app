@@ -1,16 +1,20 @@
 const User = require('./model/user');
+const Follower = require('./model/follower');
 
-const doGetUsers = async () => {
-  const res = await User.find()
-  return res;
+const getUsers = async () => {
+  return await User.find();
 };
 
-const doPostUser = async (user) => {
-  let newUser = new User(user);
-  const res = await newUser.save();
-  return res;
+const createUser = async (user) => {
+  return await new User(user).save();
 };
+
+const follow = async (follower) => {
+  return await new Follower(follower).save();
+};
+
 module.exports = {
-  doGetUsers,
-  doPostUser,
+  getUsers,
+  createUser,
+  follow
 };
