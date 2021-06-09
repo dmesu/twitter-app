@@ -1,13 +1,13 @@
-const errorHandler = require('./error-handler');
-const badJsonHandler = require('./bad-json-handler');
-const notFoundHandler = require('./404-handler');
-const handleRequest = require('./express-callback');
-const handleValidator = require('./validator-callback');
+const handleErrors = require('./handle-errors');
+const handleInvalidJson = require('./handle-invalid-json');
+const handleMissingPath = require('./handle-missing-path');
+const handleRequest = require('./handle-request');
+const handleValidator = require('./handle-validator');
 
 module.exports = {
-  errorHandler,
-  badJsonHandler,
-  notFoundHandler,
+  handleErrors,
+  handleInvalidJson,
+  handleMissingPath,
   handleRequest,
   handleValidator,
 };

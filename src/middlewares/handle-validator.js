@@ -1,4 +1,4 @@
-const { BadRequestError } = require('../utils/api-errors');
+const { BadRequestError } = require('../utils/client-errors');
 
 module.exports = (validator) => (req, res, next) => {
   const httpRequest = {

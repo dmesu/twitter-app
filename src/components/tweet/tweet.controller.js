@@ -1,8 +1,5 @@
-
-const createTweet = ({
-  TweetService, SocialService
-}) => async (httpRequest) => {
-  const response = await TweetService.createTweet(SocialService, httpRequest.body);
+const createTweet = ({ TweetService }) => async (httpRequest) => {
+  const response = await TweetService.createTweet(httpRequest.body);
   return {
     statusCode: 200,
     body: {
@@ -13,9 +10,7 @@ const createTweet = ({
   };
 };
 
-const getTimeline = ({
-  TweetService
-}) => async (httpRequest) => {
+const getTimeline = ({ TweetService }) => async (httpRequest) => {
   const response = await TweetService.getTimeline(httpRequest.params);
   return {
     statusCode: 200,
@@ -27,10 +22,8 @@ const getTimeline = ({
   };
 };
 
-const getWall = ({
-  TweetService, SocialService
-}) => async (httpRequest) => {
-  const response = await TweetService.getWall(SocialService, httpRequest.params);
+const getWall = ({ TweetService }) => async (httpRequest) => {
+  const response = await TweetService.getWall(httpRequest.params);
   return {
     statusCode: 200,
     body: {

@@ -6,10 +6,6 @@ const request = require('supertest');
 
 require('dotenv').config();
 
-// dependency to be stubbed
-
-// stubs
-
 const app = require('../../src/app');
 
 test.before(async (t) => {
@@ -21,7 +17,7 @@ test.after.always((t) => {
   delete require.cache[require.resolve('../../src/app')]; // kills server
 });
 
-test('Test Bad Json Handler', async (t) => {
+test('Handle missing path', async (t) => {
   const { server, apiUrl } = t.context;
   const res = await server
     .get(apiUrl)

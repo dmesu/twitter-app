@@ -1,33 +1,23 @@
-const router = require('express').Router();
+const { SocialService } = require('../social/social.component');
 
-// middlewares
-const {
-  handleRequest,
-  handleValidator,
-} = require('../../middlewares');
-
-// controller
-const controller = require('./tweet.controller');
-
-// validator
-const TweetValidator = require('./tweet.validator');
-
-// services
-const TweetService = require('./tweet.service');
-const SocialService = require('../social/social.service');
-
-// inject dependencies in controller methods
-const createTweet = controller.createTweet({ TweetService, SocialService });
-const getTimeline = controller.getTimeline({ TweetService });
-const getWall = controller.getWall({ TweetService, SocialService });
-
-const TweetController = {
-  createTweet,
-  getTimeline,
-  getWall
+const Tweet = require('./model/tweet');
+const ts = require('./tweet.service');
+const TweetService = {
+  createTweet: ts.createTweet({ Tweet, SocialService }),
+  getTimeline: ts.getTimeline({ Tweet } ),
+  getWall: ts.getWall({ Tweet, SocialService })
 };
 
-// routes
+const tc = require('./tweet.controller');
+const TweetController = {
+  createTweet: tc.createTweet({ TweetService }),
+  getTimeline: tc.getTimeline({ TweetService }),
+  getWall: tc.getWall({ TweetService, SocialService })
+};
+
+const router = require('express').Router();
+const { handleRequest, handleValidator } = require('../../middlewares');
+const TweetValidator = require('./tweet.validator');
 const routes = require('./tweet.routes')({
   router,
   TweetValidator,
@@ -37,6 +27,5 @@ const routes = require('./tweet.routes')({
 });
 
 module.exports = {
-  TweetService,
-  TweetRoutes: routes,
+  TweetRoutes: routes
 };

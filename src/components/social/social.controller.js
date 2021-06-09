@@ -1,6 +1,4 @@
-const getUsers = ({
-  SocialService,
-}) => async () => {
+const getUsers = ({ SocialService }) => async () => {
   const response = await SocialService.getUsers();
   return {
     statusCode: 200,
@@ -12,9 +10,7 @@ const getUsers = ({
   };
 };
 
-const createUser = ({
-  SocialService,
-}) => async (httpRequest) => {
+const createUser = ({ SocialService }) => async (httpRequest) => {
   const response = await SocialService.createUser(httpRequest.body);
   return {
     statusCode: 200,
@@ -26,9 +22,7 @@ const createUser = ({
   };
 };
 
-const follow = ({
-  SocialService,
-}) => async (httpRequest) => {
+const follow = ({ SocialService }) => async (httpRequest) => {
   const response = await SocialService.follow(httpRequest.body);
   return {
     statusCode: 200,

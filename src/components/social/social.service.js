@@ -1,23 +1,20 @@
-const User = require('./model/user');
-const Follower = require('./model/follower');
-
-const getUsers = async () => {
+const getUsers = ({ User }) => async () => {
   return await User.find();
 };
 
-const getUser = async (username) => {
+const getUser = ({ User }) => async (username) => {
   return await User.find({ username: username });
 };
 
-const createUser = async (user) => {
+const createUser = ({ User }) => async (user) => {
   return await new User(user).save();
 };
 
-const follow = async (follower) => {
+const follow = ({ Follower }) => async (follower) => {
   return await new Follower(follower).save();
 };
 
-const getFollowers = async (username) => {
+const getFollowers = ({ Follower }) => async (username) => {
   return await Follower.find(username);
 };
 

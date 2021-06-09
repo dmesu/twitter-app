@@ -1,32 +1,24 @@
-const router = require('express').Router();
-
-// middlewares
-const {
-  handleRequest,
-  handleValidator,
-} = require('../../middlewares');
-
-// controller
-const controller = require('./social.controller');
-
-// validator
-const SocialValidator = require('./social.validator');
-
-// services
-const SocialService = require('./social.service');
-
-// inject dependencies in controller methods
-const getUsers = controller.getUsers({ SocialService });
-const createUser = controller.createUser({ SocialService });
-const follow = controller.follow({ SocialService });
-
-const SocialController = {
-  getUsers,
-  createUser,
-  follow
+const User = require('./model/user');
+const Follower = require('./model/follower');
+const ss = require('./social.service');
+const SocialService = {
+  getUsers: ss.getUsers({ User }),
+  getUser: ss.getUser({ User }),
+  createUser: ss.createUser({ User }),
+  follow: ss.follow({ Follower }),
+  getFollowers: ss.getFollowers({ Follower }),
 };
 
-// routes
+const sc = require('./social.controller');
+const SocialController = {
+  getUsers: sc.getUsers({ SocialService }),
+  createUser: sc.createUser({ SocialService }),
+  follow: sc.follow({ SocialService })
+};
+
+const router = require('express').Router();
+const { handleRequest, handleValidator } = require('../../middlewares');
+const SocialValidator = require('./social.validator');
 const routes = require('./social.routes')({
   router,
   SocialValidator,
@@ -36,6 +28,6 @@ const routes = require('./social.routes')({
 });
 
 module.exports = {
-  SocialService,
-  SocialRoutes: routes,
+  SocialService: SocialService,
+  SocialRoutes: routes
 };

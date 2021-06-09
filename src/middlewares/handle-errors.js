@@ -1,8 +1,6 @@
-const { APIError } = require('../utils/api-errors');
-const { log, logToFile } = require('../support/logger');
+const { ClientError } = require('../utils/client-errors');
 
 module.exports = async (err, req, res, next) => {
-  // log any kind of error
   const errorData = {
     date: new Date().toISOString(),
     env: process.env.NODE_ENV,
@@ -15,15 +13,10 @@ module.exports = async (err, req, res, next) => {
     body: req.body,
     client: req.ip,
   };
-  if (process.env.NODE_ENV === 'production') {
-    logToFile.log(errorData);
-  } else {
-    console.log(err);
-    log.error(err);
-  }
+  
+  console.log(err);
 
-  // catch all else api errors
-  if (err instanceof APIError) {
+  if (err instanceof ClientError) {
     return res
       .status(err.status)
       .send({
@@ -31,7 +24,7 @@ module.exports = async (err, req, res, next) => {
         message: err.message,
       });
   }
-  // connect all errors
+
   return res.status(500).send({
     success: false,
     message: 'Something went wrong!',
