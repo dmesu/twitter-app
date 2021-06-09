@@ -2,7 +2,6 @@
 
 const test = require('ava');
 const sinon = require('sinon');
-const faker = require('faker');
 const request = require('supertest');
 
 require('dotenv').config();

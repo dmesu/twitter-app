@@ -10,7 +10,7 @@ module.exports = ({
     handleRequest(SocialController.getUsers),
   );
   router.post(
-    '/user',
+    '/users',
     handleValidator(SocialValidator.validateUser),
     handleRequest(SocialController.createUser),
   );
