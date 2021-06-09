@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "unitTest": "env NODE_ENV=test ava -m '*Unit Test*'",
+    "e2eTest": "env NODE_ENV=test ava -m '*E2E Test*'",
     "test": "env NODE_ENV=test ava",
     "start": "pm2 start ecosystem.config.js",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=cobertura npm test",
@@ -28,7 +30,7 @@
     "stoppable": "^1.1.0",
     "winston": "^3.3.3"
   },
-  "devDependencies": {
+  "devDependencies": { 
     "ava": "^3.15.0",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
