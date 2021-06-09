@@ -16,6 +16,22 @@ const validateTweet = (httpRequest) => {
   return schema.validate(httpRequest.body, options);
 };
 
+const validateTimeline = (httpRequest) => {
+  const schema = Joi.object({
+    username: Joi.string().required()
+  });
+  return schema.validate(httpRequest.params, options);
+};
+
+const validateWall = (httpRequest) => {
+  const schema = Joi.object({
+    username: Joi.string().required()
+  });
+  return schema.validate(httpRequest.params, options);
+};
+
 module.exports = {
   validateTweet,
+  validateTimeline,
+  validateWall
 };

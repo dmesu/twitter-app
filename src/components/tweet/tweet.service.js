@@ -9,6 +9,20 @@ const createTweet = async (SocialService, tweet) => {
   return await new Tweet(tweet).save();
 };
 
+const getTimeline = async (username) => {
+  return await Tweet.find(username)
+};
+
+const getWall = async (SocialService, username) => {
+  const followers = await SocialService.getFollowers(username)
+  const followees = followers.map(follower => {
+    return follower.followee
+  })
+  return await Tweet.find({ username: { $in: followees } });
+};
+
 module.exports = {
   createTweet,
+  getTimeline,
+  getWall
 };

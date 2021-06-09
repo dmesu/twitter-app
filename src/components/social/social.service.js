@@ -17,9 +17,14 @@ const follow = async (follower) => {
   return await new Follower(follower).save();
 };
 
+const getFollowers = async (username) => {
+  return await Follower.find(username);
+};
+
 module.exports = {
   getUsers,
   getUser,
   createUser,
-  follow
+  follow,
+  getFollowers
 };

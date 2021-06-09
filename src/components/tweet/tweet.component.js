@@ -18,9 +18,13 @@ const SocialService = require('../social/social.service');
 
 // inject dependencies in controller methods
 const createTweet = controller.createTweet({ TweetService, SocialService });
+const getTimeline = controller.getTimeline({ TweetService });
+const getWall = controller.getWall({ TweetService, SocialService });
 
 const TweetController = {
   createTweet,
+  getTimeline,
+  getWall
 };
 
 // routes
