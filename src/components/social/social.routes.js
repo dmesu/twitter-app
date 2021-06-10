@@ -16,6 +16,7 @@ module.exports = ({
   );
   router.post(
     '/follow',
+    handleValidator(SocialValidator.validateFollow),
     handleRequest(SocialController.follow),
   );
   return router;
