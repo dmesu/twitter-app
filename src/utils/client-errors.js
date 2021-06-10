@@ -13,6 +13,10 @@ const clientErrors = Object.entries({
   BadRequest: {
     statusCode: 400,
     message: 'Bad Request',
+  },
+  Conflict: {
+    statusCode: 409,
+    message: 'Conflict',
   }
 }).reduce((map, [name, data]) => {
   map[`${name}Error`] = class extends ClientError {
