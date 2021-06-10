@@ -34,7 +34,6 @@ test('Fetch All Users', async (t) => {
   t.true(res.body.data.some((user) => user.username === "bob"));
 });
 
-
 test('Follow a user', async (t) => {
   const { server, apiUrl } = t.context;
 
