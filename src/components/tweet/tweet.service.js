@@ -1,5 +1,5 @@
 const Tweet = require('./model/tweet');
-const { SocialService } = require('../social/social.component');
+const SocialService = require('../social/social.service');
 
 const createTweet = async (tweet) => {
   const user = await SocialService.getUser(tweet.username)
