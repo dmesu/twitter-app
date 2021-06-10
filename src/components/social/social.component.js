@@ -1,20 +1,4 @@
-const User = require('./model/user');
-const Follower = require('./model/follower');
-const ss = require('./social.service');
-const SocialService = {
-  getUsers: ss.getUsers({ User }),
-  getUser: ss.getUser({ User }),
-  createUser: ss.createUser({ User }),
-  follow: ss.follow({ Follower }),
-  getFollowers: ss.getFollowers({ Follower }),
-};
-
-const sc = require('./social.controller');
-const SocialController = {
-  getUsers: sc.getUsers({ SocialService }),
-  createUser: sc.createUser({ SocialService }),
-  follow: sc.follow({ SocialService })
-};
+const SocialController = require('./social.controller');
 
 const router = require('express').Router();
 const { handleRequest, handleValidator } = require('../../middlewares');
@@ -28,6 +12,5 @@ const routes = require('./social.routes')({
 });
 
 module.exports = {
-  SocialService: SocialService,
   SocialRoutes: routes
 };

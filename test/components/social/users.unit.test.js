@@ -5,7 +5,7 @@ const request = require('supertest');
 
 require('dotenv').config();
 
-const { SocialService } = require('../../../src/components/social/social.component');
+const { SocialService } = require('../../../src/components/social/social.service');
 const getUsers = sinon.stub(SocialService, 'getUsers').resolves([{
   _id: "60afb662ad6cbe1d1ae85850",
   username: "peter"

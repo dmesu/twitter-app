@@ -1,4 +1,7 @@
-const createTweet = ({ Tweet, SocialService }) => async (tweet) => {
+const Tweet = require('./model/tweet');
+const { SocialService } = require('../social/social.component');
+
+const createTweet = async (tweet) => {
   const user = await SocialService.getUser(tweet.username)
   if (!user.length) {
     const createdUser = await SocialService.createUser({ username: tweet.username })
@@ -7,11 +10,11 @@ const createTweet = ({ Tweet, SocialService }) => async (tweet) => {
   return await new Tweet(tweet).save();
 };
 
-const getTimeline = ({ Tweet }) => async (username) => {
+const getTimeline = async (username) => {
   return await Tweet.find(username)
 };
 
-const getWall = ({ Tweet, SocialService }) => async (username) => {
+const getWall = async (username) => {
   const followers = await SocialService.getFollowers(username)
   const followees = followers.map(follower => {
     return follower.followee

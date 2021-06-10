@@ -1,4 +1,6 @@
-const getUsers = ({ SocialService }) => async () => {
+const SocialService = require('./social.service');
+
+const getUsers = async () => {
   const response = await SocialService.getUsers();
   return {
     statusCode: 200,
@@ -10,7 +12,7 @@ const getUsers = ({ SocialService }) => async () => {
   };
 };
 
-const createUser = ({ SocialService }) => async (httpRequest) => {
+const createUser = async (httpRequest) => {
   const response = await SocialService.createUser(httpRequest.body);
   return {
     statusCode: 200,
@@ -22,7 +24,7 @@ const createUser = ({ SocialService }) => async (httpRequest) => {
   };
 };
 
-const follow = ({ SocialService }) => async (httpRequest) => {
+const follow = async (httpRequest) => {
   const response = await SocialService.follow(httpRequest.body);
   return {
     statusCode: 200,

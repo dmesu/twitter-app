@@ -1,4 +1,6 @@
-const createTweet = ({ TweetService }) => async (httpRequest) => {
+const TweetService = require('./tweet.service');
+
+const createTweet = async (httpRequest) => {
   const response = await TweetService.createTweet(httpRequest.body);
   return {
     statusCode: 200,
@@ -10,7 +12,7 @@ const createTweet = ({ TweetService }) => async (httpRequest) => {
   };
 };
 
-const getTimeline = ({ TweetService }) => async (httpRequest) => {
+const getTimeline = async (httpRequest) => {
   const response = await TweetService.getTimeline(httpRequest.params);
   return {
     statusCode: 200,
@@ -22,7 +24,7 @@ const getTimeline = ({ TweetService }) => async (httpRequest) => {
   };
 };
 
-const getWall = ({ TweetService }) => async (httpRequest) => {
+const getWall = async (httpRequest) => {
   const response = await TweetService.getWall(httpRequest.params);
   return {
     statusCode: 200,
