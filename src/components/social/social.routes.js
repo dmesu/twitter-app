@@ -19,5 +19,10 @@ module.exports = ({
     handleValidator(SocialValidator.validateFollow),
     handleRequest(SocialController.follow),
   );
+  router.post(
+    '/like',
+    handleValidator(SocialValidator.validateLike),
+    handleRequest(SocialController.likeTweet),
+  );
   return router;
 };

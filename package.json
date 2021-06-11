@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "docker rm -f mongo-test 2>/dev/null && docker run --name mongo-test -d -p 27017:27017 mongo",
-    "test": "env NODE_ENV=test ava",
-    "posttest": "docker rm -f mongo-test",
+    "test": "env NODE_ENV=test ava -s",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=cobertura npm test",
     "dev": "nodemon ./src/server.js"
   },

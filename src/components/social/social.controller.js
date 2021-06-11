@@ -36,8 +36,21 @@ const follow = async (httpRequest) => {
   };
 };
 
+const likeTweet = async (httpRequest) => {
+  const response = await SocialService.likeTweet(httpRequest.body);
+  return {
+    statusCode: 200,
+    body: {
+      success: true,
+      message: `Liked a tweet`,
+      data: response,
+    },
+  };
+};
+
 module.exports = {
   getUsers,
   createUser,
-  follow
+  follow,
+  likeTweet
 };

@@ -2,21 +2,23 @@
 
 const test = require('ava');
 const request = require('supertest');
-const mongoose = require('mongoose');
+const execSync = require('child_process').execSync;
+
 
 require('dotenv').config();
 
 const app = require('../../../src/app');
+var mongoContainerId;
+
 
 test.before(async (t) => {
   t.context.server = request(app);
-  mongoose.connect('mongodb://localhost:27017/twitter-test',function(){
-    mongoose.connection.db.dropDatabase();
-  });
+  mongoContainerId = execSync('docker rm -f mongo-test 2>/dev/null && docker run -d -p 27017:27017 mongo', { encoding: 'utf-8' })
 });
 
 test.after.always((t) => {
   delete require.cache[require.resolve('../../../src/app')]; // kills server
+  execSync(`docker rm -f ${mongoContainerId}`)
 });
 
 

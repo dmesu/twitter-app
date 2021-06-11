@@ -1,5 +1,6 @@
 const User = require('./model/user');
 const Follower = require('./model/follower');
+const Like = require('./model/like');
 
 const getUsers = async () => {
   return await User.find();
@@ -21,10 +22,15 @@ const getFollowers = async (username) => {
   return await Follower.find(username);
 };
 
+const likeTweet = async (like) => {
+  return await Like.save(like);
+};
+
 module.exports = {
   getUsers,
   getUser,
   createUser,
   follow,
-  getFollowers
+  getFollowers,
+  likeTweet
 };

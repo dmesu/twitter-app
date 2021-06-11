@@ -23,7 +23,16 @@ const validateFollow = (httpRequest) => {
   return schema.validate(httpRequest.body, options);
 };
 
+const validateLike = (httpRequest) => {
+  const schema = Joi.object({
+    username_id: Joi.ObjectId().required(),
+    tweet_id: Joi.ObjectId().required()
+  });
+  return schema.validate(httpRequest.body, options);
+};
+
 module.exports = {
   validateUser,
-  validateFollow
+  validateFollow,
+  validateLike
 };
