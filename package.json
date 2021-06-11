@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "env NODE_ENV=test ava -s",
+    "test": "env NODE_ENV=test ava -s -v",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=cobertura npm test",
     "dev": "nodemon ./src/server.js"
   },

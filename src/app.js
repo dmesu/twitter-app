@@ -3,7 +3,7 @@ require('express-async-errors');
 require('dotenv').config();
 const { DB_HOST } = require('config');
 
-require('mongoose').connect(DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+require('mongoose').connect(DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 const app = express();
 
