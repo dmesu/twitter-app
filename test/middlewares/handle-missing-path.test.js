@@ -6,7 +6,7 @@ const request = require('supertest');
 
 require('dotenv').config();
 
-const app = require('../../src/app');
+const app = require('../../src/app')();
 
 test.before(async (t) => {
   t.context.apiUrl = `/api/v1/${faker.random.word()}`;

@@ -2,23 +2,24 @@
 
 const test = require('ava');
 const request = require('supertest');
-const execSync = require('child_process').execSync;
+const { GenericContainer } = require("testcontainers");
 
 require('dotenv').config();
 
-const app = require('../../../src/app');
-var mongoContainerId;
-
+let mongo;
 
 test.before(async (t) => {
+  mongo = await new GenericContainer("mongo")
+    .withExposedPorts(27017)
+    .start();
+  const mappedPort = mongo.getMappedPort(27017)
+  const app = require('../../../src/app')(`mongodb://localhost:${mappedPort}/twitter-test`);
   t.context.server = request(app);
-  mongoContainerId = execSync('docker rm -f mongo-test 2>/dev/null && docker run -d -p 27017:27017 mongo', { encoding: 'utf-8' })
-  
 });
 
-test.after.always((t) => {
+test.after.always(async (t) => {
   delete require.cache[require.resolve('../../../src/app')]; // kills server
-  execSync(`docker rm -f ${mongoContainerId}`)
+  await mongo.stop();
 });
 
 

@@ -7,7 +7,7 @@ const SocialService = require('../../../src/components/social/social.service');
 require('dotenv').config();
 
 const getUsers = sinon.stub(SocialService, 'getUsers')
-const app = require('../../../src/app');
+const app = require('../../../src/app')();
 
 test.before(async (t) => {
   t.context.stubs = { getUsers };

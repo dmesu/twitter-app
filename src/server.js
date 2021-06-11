@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const app = require('./app');
+const app = require('./app')();
 
 const server = app.listen(3000);
 server.on('listening', onListening);
