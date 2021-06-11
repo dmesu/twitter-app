@@ -7,6 +7,10 @@ module.exports = (validator) => (req, res, next) => {
     params: req.params,
   };
   const { error } = validator(httpRequest);
-  if (error) throw new BadRequestError(error.message);
+  if (error) {
+    console.log("Invalid json semantic", error);
+    throw new BadRequestError(error.message);
+  }
+  
   return next();
 };

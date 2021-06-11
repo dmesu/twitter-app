@@ -9,6 +9,10 @@ module.exports = ({
     '/users',
     handleRequest(SocialController.getUsers),
   );
+  router.get(
+    '/likes/:usernameId',
+    handleRequest(SocialController.getLikes),
+  );
   router.post(
     '/users',
     handleValidator(SocialValidator.validateUser),

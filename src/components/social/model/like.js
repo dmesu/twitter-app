@@ -3,8 +3,8 @@ let Schema = mongoose.Schema;
 
 let LikeSchema = new Schema(
   {
-    usernameId: { type: Schema.ObjectId, required: true },
-    tweetId: { type: Schema.ObjectId, required: true },
+    usernameId: { type: String, required: true },
+    tweetId: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
   },
   {

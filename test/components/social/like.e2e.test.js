@@ -49,24 +49,21 @@ test('Gets a list of likes from a user', async (t) => {
 
   const like = await server
     .post('/api/social/like')
-    .send({"tweed_id": tweetRes.body.data._id, "username_id": userRes.body.data._id })
+    .send({"tweetId": tweetRes.body.data._id, "usernameId": userRes.body.data._id })
     .set('Accept', 'application/json')
     .expect(200);
 
-    // console.log("tweet id", tweetRes.body.data._id);
-    // console.log("user id", userRes.body.data._id);
-    // console.log("LIKE", like.body.data);
-
-
   const like2 = await server
     .post('/api/social/like')
-    .send({"tweed_id": tweet2Res.body.data._id, "username_id": user2Res.body.data._id })
+    .send({"tweetId": tweet2Res.body.data._id, "usernameId": user2Res.body.data._id })
     .set('Accept', 'application/json')
     .expect(200);  
+
 
    const likesFromAnna = await server
     .get(`/api/social/likes/${userRes.body.data._id}`)
     .expect(200);  
-    
-  t.true(likesFromAnna.body.data.lenght === 1)
+
+  t.true(likesFromAnna.body.data.length === 1)
+  t.like(likesFromAnna.body.data[0], {"usernameId": userRes.body.data._id, "tweetId": tweetRes.body.data._id})
 });

@@ -23,7 +23,11 @@ const getFollowers = async (username) => {
 };
 
 const likeTweet = async (like) => {
-  return await Like.save(like);
+  return await new Like(like).save();
+};
+
+const getLikes = async (usernameId) => {
+  return await Like.find({ usernameId: usernameId });
 };
 
 module.exports = {
@@ -32,5 +36,6 @@ module.exports = {
   createUser,
   follow,
   getFollowers,
-  likeTweet
+  likeTweet,
+  getLikes
 };

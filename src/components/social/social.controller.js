@@ -48,9 +48,22 @@ const likeTweet = async (httpRequest) => {
   };
 };
 
+const getLikes = async (httpRequest) => {
+  const response = await SocialService.getLikes(httpRequest.params.usernameId);
+  return {
+    statusCode: 200,
+    body: {
+      success: true,
+      message: 'Fetched likes successfully!',
+      data: response,
+    },
+  };
+};
+
 module.exports = {
   getUsers,
   createUser,
   follow,
-  likeTweet
+  likeTweet,
+  getLikes
 };

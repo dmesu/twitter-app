@@ -25,8 +25,8 @@ const validateFollow = (httpRequest) => {
 
 const validateLike = (httpRequest) => {
   const schema = Joi.object({
-    username_id: Joi.ObjectId().required(),
-    tweet_id: Joi.ObjectId().required()
+    usernameId: Joi.string().required(),
+    tweetId: Joi.string().required()
   });
   return schema.validate(httpRequest.body, options);
 };
