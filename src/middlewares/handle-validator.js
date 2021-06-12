@@ -1,4 +1,4 @@
-const { BadRequestError } = require('../utils/client-errors');
+var createError = require('http-errors')
 
 module.exports = (validator) => (req, res, next) => {
   const httpRequest = {
@@ -9,7 +9,7 @@ module.exports = (validator) => (req, res, next) => {
   const { error } = validator(httpRequest);
   if (error) {
     console.log("Invalid json semantic", error);
-    throw new BadRequestError(error.message);
+    throw new createError(400, error.message);
   }
   
   return next();

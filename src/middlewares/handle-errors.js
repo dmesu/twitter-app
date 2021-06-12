@@ -1,4 +1,4 @@
-const { ClientError } = require('../utils/client-errors');
+var createError = require('http-errors')
 
 module.exports = async (err, req, res, next) => {
   const errorData = {
@@ -16,7 +16,7 @@ module.exports = async (err, req, res, next) => {
   
   console.log(err);
 
-  if (err instanceof ClientError) {
+  if (err instanceof createError.HttpError) {
     return res
       .status(err.status)
       .send({

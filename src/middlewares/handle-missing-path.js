@@ -1,4 +1,6 @@
-module.exports = (req, res) => res.status(404).send({
-  success: false,
-  message: `${req.method} ${req.url} not found!`,
-});
+var createError = require('http-errors')
+
+module.exports = (req, res) => {
+  console.log(req.baseUrl)
+  throw new createError(404, `${req.method} ${req.baseUrl} not found!`);
+}

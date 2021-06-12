@@ -1,7 +1,6 @@
 # Pre-requisites
 - Install [Node.js](https://nodejs.org/en/) version v12.13.1
 
-
 # Getting started
 
 - Clone the repository
@@ -33,13 +32,12 @@ npm run dev
 
 - Run tests
 
-
-````
+```
 npm test
 ```
 
 To run a subset of tests:
 
 ```
-env NODE_ENV=test npx ava --match='*likes*'
+npm run test -- -m '*handle*'
 ```

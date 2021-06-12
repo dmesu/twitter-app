@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-const { ConflictError } = require('../../../utils/client-errors');
+var createError = require('http-errors')
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema(
@@ -21,7 +21,7 @@ UserSchema.pre('save', next => {
 
 UserSchema.post('save', function(error, doc, next) {
   if (error.name === 'MongoError' && error.code === 11000) {
-    next(new ConflictError('There was a duplicate key error'));
+    next(new createError(409, 'There was a duplicate key error'));
   } else {
     next();
   }
