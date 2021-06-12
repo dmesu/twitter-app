@@ -20,7 +20,7 @@ test.after.always((t) => {
   delete require.cache[require.resolve('../../../src/app')]; // kills server
 });
 
-test('Fetch All Users', async (t) => {
+test('(Stub) Fetch All Users', async (t) => {
   const { server, apiUrl, stubs } = t.context;
   
   const users = [{
