@@ -1,4 +1,4 @@
-const Joi = require('../../support/validator');
+const Joi = require('@hapi/joi');
 
 const options = {
   errors: {

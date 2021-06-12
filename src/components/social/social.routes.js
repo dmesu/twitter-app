@@ -1,10 +1,9 @@
-module.exports = ({
-  router,
-  SocialController,
-  SocialValidator,
-  handleRequest,
-  handleValidator,
-}) => {
+const SocialController = require('./social.controller');
+const router = require('express').Router();
+const { handleRequest, handleValidator } = require('../../middlewares');
+const SocialValidator = require('./social.validator');
+
+module.exports = () => {
   router.get(
     '/users',
     handleRequest(SocialController.getUsers),

@@ -1,14 +1,14 @@
-const socialComponent = require('./components/social/social.component');
-const tweetComponent = require('./components/tweet/tweet.component');
+const SocialRoutes = require('./components/social/social.routes');
+const TweetRoutes = require('./components/tweet/tweet.routes');
 
 function routes(router) {
   router.use(
     '/social',
-    socialComponent.SocialRoutes,
+    SocialRoutes(),
   );
   router.use(
     '/tweet',
-    tweetComponent.TweetRoutes,
+    TweetRoutes(),
   );
   return router;
 }

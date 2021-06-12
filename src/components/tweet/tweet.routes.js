@@ -1,10 +1,9 @@
-module.exports = ({
-  router,
-  TweetController,
-  TweetValidator,
-  handleRequest,
-  handleValidator,
-}) => {
+const TweetController = require('./tweet.controller');
+const router = require('express').Router();
+const { handleRequest, handleValidator } = require('../../middlewares');
+const TweetValidator = require('./tweet.validator');
+
+module.exports = () => {
   router.post(
     '/',
     handleValidator(TweetValidator.validateTweet),
